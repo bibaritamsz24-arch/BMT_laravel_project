@@ -19,11 +19,11 @@
                 <i class="bi bi-person-plus-fill me-1"></i>
                 Add Student
             </button>
-            <button type="button" class="btn btn-outline-brand js-open-create" data-account-type="teacher">
+            <button type="button" class="btn btn-brand js-open-create" data-account-type="teacher">
                 <i class="bi bi-person-workspace me-1"></i>
                 Add Teacher
             </button>
-            <a href="{{ route('degrees.create') }}" class="btn btn-outline-brand">
+            <a href="{{ route('degrees.create') }}" class="btn btn-brand">
                 <i class="bi bi-journal-plus me-1"></i>
                 Add Degree
             </a>
