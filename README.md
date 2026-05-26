@@ -7,6 +7,37 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Deploy to Render with Railway MySQL
+
+This project includes a Docker setup for Render and uses Railway MySQL for production data.
+
+1. Push this repository to GitHub.
+2. In Railway, create a MySQL database.
+3. In the Railway MySQL service, use the public TCP proxy connection values because Render runs outside the Railway project network.
+4. In Render, create a new Web Service from the GitHub repository and choose Docker.
+5. Add these Render environment variables:
+
+| Key | Value |
+| --- | --- |
+| `APP_NAME` | `BMTPROJECT_A` |
+| `APP_ENV` | `production` |
+| `APP_DEBUG` | `false` |
+| `APP_KEY` | output of `php artisan key:generate --show` |
+| `APP_URL` | your Render app URL, for example `https://your-app.onrender.com` |
+| `ASSET_URL` | same as `APP_URL` |
+| `LOG_CHANNEL` | `stderr` |
+| `DB_CONNECTION` | `mysql` |
+| `DB_HOST` | Railway public host |
+| `DB_PORT` | Railway public port |
+| `DB_DATABASE` | Railway database name |
+| `DB_USERNAME` | Railway username |
+| `DB_PASSWORD` | Railway password |
+| `SESSION_DRIVER` | `database` |
+| `CACHE_STORE` | `database` |
+| `QUEUE_CONNECTION` | `database` |
+
+Render will build the Docker image, compile Vite assets, cache Laravel config/routes/views, and run `php artisan migrate --force` when the service starts.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
